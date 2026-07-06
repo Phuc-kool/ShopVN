@@ -38,8 +38,6 @@ ecommerce-project/
 │   ├── src/
 │   ├── Dockerfile
 │   └── nginx.conf            # (nếu build static serve riêng)
-├── nginx/
-│   └── nginx.conf             # reverse proxy config chính
 ├── docker-compose.yml
 ├── .env.example
 └── README.md
