@@ -43,6 +43,7 @@ ecommerce-project/
 ├── docker-compose.yml
 ├── .env.example
 └── README.md
+```
 ## 4. Biến môi trường (.env)
 
 Tạo file `.env` ở thư mục gốc dựa theo `.env.example`:
