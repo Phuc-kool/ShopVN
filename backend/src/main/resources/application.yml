@@ -1,0 +1,91 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ecommerce-backend
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/ecommerce_db?useSSL=false&serverTimezone=Asia/Ho_Chi_Minh&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:123456}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    hikari:
+      maximum-pool-size: 50
+      minimum-idle: 10
+      idle-timeout: 30000
+      connection-timeout: 20000
+
+  # 1) THÊM BLOCK MAILTRAP (Cùng cấp với datasource, cache, jpa...)
+  mail:
+    host: ${MAIL_HOST:sandbox.smtp.mailtrap.io}
+    port: ${MAIL_PORT:2525}
+    username: ${MAIL_USERNAME:70e7a338de7a7e}
+    password: ${MAIL_PASSWORD:992a4193121203}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  cache:
+    cache-names: categories,products
+    caffeine:
+      spec: maximumSize=2000,expireAfterWrite=10m,recordStats
+
+  sql:
+    init:
+      mode: never
+      data-locations: classpath:seed_data.sql
+      continue-on-error: true
+      platform: mysql
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+        generate_statistics: true
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+  web:
+    resources:
+      static-locations: file:./uploads/
+    mvc:
+      static-path-pattern: /uploads/**
+
+app:
+  jwt:
+    secret: c2VjcmV0a2V5Zm9yand0dG9rZW5nZW5lcmF0aW9uMTIzNDU2Nzg5MA==
+    expiration: 86400000
+
+  upload:
+    dir: ./uploads/images
+
+# 2) THÊM BLOCK VNPAY (Cùng cấp với block server, spring, app, logging...)
+vnpay:
+  tmn-code: ${VNPAY_TMN_CODE:DEMO_TMN_CODE}
+  hash-secret: ${VNPAY_HASH_SECRET:DEMO_HASH_SECRET}
+  pay-url: ${VNPAY_PAY_URL:https://sandbox.vnpayment.vn/paymentv2/vpcpay.html}
+  # Phải khớp CHÍNH XÁC với route frontend đã đăng ký (/order/payment-return)
+  return-url: ${VNPAY_RETURN_URL:http://localhost:3000/order/payment-return}
+
+logging:
+  level:
+    com.ecommerce: DEBUG
+    org.springframework.security: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.stat: DEBUG
+    com.zaxxer.hikari: DEBUG

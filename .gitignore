@@ -1,0 +1,77 @@
+# ============================================================
+# SECRETS — quan trọng nhất, đặt lên đầu để không bao giờ quên
+# ============================================================
+run-local.sh
+.env
+.env.local
+.env.*.local
+**/application-local.yml
+**/application-secret.yml
+
+# ============================================================
+# BACKEND — Java / Maven / Spring Boot
+# ============================================================
+backend/target/
+target/
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+*.war
+
+# Uploads — file ảnh sản phẩm user upload lên, không nên commit
+backend/uploads/
+uploads/
+
+# IDE — IntelliJ
+.idea/
+*.iml
+*.iws
+out/
+
+# IDE — Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# IDE — VSCode (giữ lại launch.json nếu muốn share cấu hình chung cho team,
+# nhưng KHÔNG commit nếu launch.json có chứa secret trong phần "env")
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Logs
+*.log
+logs/
+
+# ============================================================
+# FRONTEND — React / Vite / Node
+# ============================================================
+frontend/node_modules/
+node_modules/
+frontend/dist/
+dist/
+frontend/.env
+frontend/.env.local
+
+# Vite cache
+.vite/
+
+# ============================================================
+# DOCKER
+# ============================================================
+docker-compose.override.yml
+
+# ============================================================
+# OS-specific
+# ============================================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============================================================
+# Misc
+# ============================================================
+*.tmp
+*.bak
+.env.backup
