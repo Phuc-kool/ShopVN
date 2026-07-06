@@ -34,12 +34,12 @@ ecommerce-project/
 │   ├── src/main/resources/application.yml
 │   ├── Dockerfile
 │   └── run-local.sh         # inline-export env vars (Linux Mint fix)
-├── frontend/                # ReactJS app
+├── frontend/                 # ReactJS app
 │   ├── src/
 │   ├── Dockerfile
-│   └── nginx.conf           # (nếu build static serve riêng)
+│   └── nginx.conf            # (nếu build static serve riêng)
 ├── nginx/
-│   └── nginx.conf           # reverse proxy config chính
+│   └── nginx.conf             # reverse proxy config chính
 ├── docker-compose.yml
 ├── .env.example
 └── README.md
