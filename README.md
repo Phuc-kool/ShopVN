@@ -7,7 +7,7 @@ Hệ thống thương mại điện tử full-stack với thanh toán online qua
 | Layer | Công nghệ |
 | :--- | :--- |
 | **Backend** | Java 21, Spring Boot 3.x (Web, Data JPA, Validation, Async), Hibernate |
-| **Frontend** | ReactJS (Vite), HTML5, CSS3, Axios |
+| **Frontend** | ReactJS (Vite), HTML, CSS, Axios |
 | **Database** | MySQL 8 |
 | **Cache** | Caffeine (in-process cache cho category listing) |
 | **Payment** | VNPay Sandbox — thanh toán + IPN (Instant Payment Notification) |
